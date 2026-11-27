@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Routes & Schedules | TransitEase</title>
+  <!-- Bootstrap 5.3.3 and Bootstrap Icons (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Common TransitEase styles -->
+  <link href="responsive.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Top navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark app-navbar sticky-top py-0">
+    <div class="container-fluid">
+      <button class="navbar-toggler d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Open menu"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="student-dashboard.html"><span class="brand-mark"><i class="bi bi-bus-front-fill"></i></span>TransitEase</a>
+      <div class="dropdown ms-auto">
+        <button class="btn btn-sm user-menu-btn dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="avatar">AM</span><span class="d-none d-sm-inline">Aarav Menon</span></button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="signin.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="app-body">
+    <!-- Sidebar: offcanvas on small screens, fixed panel on large screens -->
+    <aside class="app-sidebar offcanvas-lg offcanvas-start" id="sidebarMenu" tabindex="-1" aria-label="Main navigation">
+      <div class="offcanvas-header d-lg-none">
+        <h5 class="offcanvas-title text-white"><i class="bi bi-bus-front-fill me-2"></i>TransitEase</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close menu"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column p-3">
+        <div class="side-section">Student</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="student-dashboard.html"><i class="bi bi-speedometer2"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a class="side-link active" href="routes.html" aria-current="page"><i class="bi bi-signpost-split"></i><span>Routes &amp; Schedules</span></a></li>
+          <li class="nav-item">
+            <a class="side-link" data-bs-toggle="collapse" href="#menuPass" role="button" aria-expanded="false" aria-controls="menuPass"><i class="bi bi-ticket-perforated"></i><span>Transport Pass</span><i class="bi bi-chevron-down chev"></i></a>
+            <div class="collapse" id="menuPass"><ul class="side-sub"><li><a class="side-link" href="pass-application.html"><i class="bi bi-pencil-square"></i><span>Apply for Pass</span></a></li><li><a class="side-link" href="application-status.html"><i class="bi bi-card-checklist"></i><span>Application Status</span></a></li></ul></div></li>
+          <li class="nav-item"><a class="side-link" href="feedback.html"><i class="bi bi-chat-left-text"></i><span>Feedback &amp; Complaints</span></a></li>
+        </ul>
+        <div class="side-section">Admin</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="admin-dashboard.html"><i class="bi bi-shield-check"></i><span>Admin Dashboard</span></a></li>
+          <li class="nav-item">
+            <a class="side-link" data-bs-toggle="collapse" href="#menuAdmin" role="button" aria-expanded="false" aria-controls="menuAdmin"><i class="bi bi-gear"></i><span>Management</span><i class="bi bi-chevron-down chev"></i></a>
+            <div class="collapse" id="menuAdmin"><ul class="side-sub"><li><a class="side-link active" href="routes.html#admin-routes"><i class="bi bi-signpost"></i><span>Manage Routes</span></a></li><li><a class="side-link" href="application-status.html#admin-review"><i class="bi bi-check2-square"></i><span>Review Applications</span></a></li><li><a class="side-link" href="feedback.html#admin-feedback"><i class="bi bi-reply"></i><span>Manage Feedback</span></a></li></ul></div></li>
+        </ul>
+        <div class="side-section">Account</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="profile.html"><i class="bi bi-person-vcard"></i><span>My Profile</span></a></li>
+          <li class="nav-item"><a class="side-link" href="signin.html"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="app-main" id="main">
+      <div class="page-header d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+        <div><h1 class="mb-1">Routes &amp; Schedules</h1><p class="text-muted mb-0">Search bus routes, pickup stops and timings.</p></div>
+        
+      </div>
+
+      <div class="card mb-3"><div class="card-body">
+        <!-- Search and filter controls (form layout using Bootstrap grid) -->
+        <form class="row g-2 filter-bar" role="search" action="routes.html" method="get">
+          <div class="col-12 col-lg-4"><div class="input-group"><span class="input-group-text"><i class="bi bi-search"></i></span><input type="search" class="form-control" name="q" placeholder="Search route no., bus no. or stop" aria-label="Search routes"></div></div>
+          <div class="col-6 col-lg-2"><select class="form-select" name="stop" aria-label="Filter by pickup stop"><option value="">All pickup stops</option><option>Avinashi Road</option><option>Civil Aerodrome</option><option>Gandhipuram</option><option>Hopes College</option><option>Kavundampalayam</option><option>Kuniyamuthur</option><option>Lakshmi Mills</option><option>Peelamedu</option><option>Podanur</option><option>RS Puram</option><option>Race Course</option><option>Ramanathapuram</option><option>Saibaba Colony</option><option>Saravanampatti</option><option>Singanallur</option><option>Tatabad</option><option>Thadagam Road</option><option>Thudiyalur</option><option>Town Hall</option><option>Ukkadam</option><option>Vadavalli</option><option>Vilankurichi</option></select></div>
+          <div class="col-6 col-lg-2"><select class="form-select" name="time" aria-label="Filter by departure time"><option value="">Any departure</option><option>Early (before 6:30)</option><option>Mid (6:30 – 7:00)</option><option>Late (after 7:00)</option></select></div>
+          <div class="col-6 col-lg-2"><select class="form-select" name="status" aria-label="Filter by status"><option value="">Any status</option><option>Active</option><option>Inactive</option></select></div>
+          <div class="col-6 col-lg-2 d-grid"><button type="submit" class="btn btn-primary"><i class="bi bi-funnel me-1"></i>Filter</button></div>
+        </form>
+      </div></div>
+
+      <p class="small text-muted mb-2">Showing 8 of 8 routes</p>
+      <!-- Route "menu": each route is a card with an image, details, fare and an Apply button -->
+      <div class="row g-4 mb-5">
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-0" alt="College campus, destination of route R-01" loading="lazy">
+              <span class="badge route-tag">R-01</span>
+              <span class="route-state"><span class="badge status-badge badge-approved">Active</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">Gandhipuram Express</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AB 1201 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">Gandhipuram</span><span class="stop-chip">Lakshmi Mills</span><span class="stop-chip">Peelamedu</span><span class="stop-chip">Hopes College</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>6:45 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:10 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹1,200<small> / month</small></div>
+              <a href="pass-application.html" class="btn btn-primary btn-sm"><i class="bi bi-ticket-perforated me-1"></i>Apply for pass</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-1" alt="College campus, destination of route R-02" loading="lazy">
+              <span class="badge route-tag">R-02</span>
+              <span class="route-state"><span class="badge status-badge badge-approved">Active</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">Singanallur Link</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AB 1305 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">Singanallur</span><span class="stop-chip">Ramanathapuram</span><span class="stop-chip">Race Course</span><span class="stop-chip">Avinashi Road</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>6:30 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:00 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹1,100<small> / month</small></div>
+              <a href="pass-application.html" class="btn btn-primary btn-sm"><i class="bi bi-ticket-perforated me-1"></i>Apply for pass</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-2" alt="College campus, destination of route R-03" loading="lazy">
+              <span class="badge route-tag">R-03</span>
+              <span class="route-state"><span class="badge status-badge badge-approved">Active</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">Saravanampatti Shuttle</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AC 2210 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">Saravanampatti</span><span class="stop-chip">Vilankurichi</span><span class="stop-chip">Civil Aerodrome</span><span class="stop-chip">Peelamedu</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>7:00 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:05 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹1,000<small> / month</small></div>
+              <a href="pass-application.html" class="btn btn-primary btn-sm"><i class="bi bi-ticket-perforated me-1"></i>Apply for pass</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-3" alt="College campus, destination of route R-04" loading="lazy">
+              <span class="badge route-tag">R-04</span>
+              <span class="route-state"><span class="badge status-badge badge-approved">Active</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">Ukkadam Route</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AC 2417 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">Ukkadam</span><span class="stop-chip">Town Hall</span><span class="stop-chip">Gandhipuram</span><span class="stop-chip">Lakshmi Mills</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>6:15 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:00 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹1,300<small> / month</small></div>
+              <a href="pass-application.html" class="btn btn-primary btn-sm"><i class="bi bi-ticket-perforated me-1"></i>Apply for pass</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-0" alt="College campus, destination of route R-05" loading="lazy">
+              <span class="badge route-tag">R-05</span>
+              <span class="route-state"><span class="badge status-badge badge-approved">Active</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">RS Puram Loop</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AD 3102 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">RS Puram</span><span class="stop-chip">Race Course</span><span class="stop-chip">Tatabad</span><span class="stop-chip">Avinashi Road</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>7:15 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:15 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹900<small> / month</small></div>
+              <a href="pass-application.html" class="btn btn-primary btn-sm"><i class="bi bi-ticket-perforated me-1"></i>Apply for pass</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-1" alt="College campus, destination of route R-06" loading="lazy">
+              <span class="badge route-tag">R-06</span>
+              <span class="route-state"><span class="badge status-badge badge-approved">Active</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">Podanur Special</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AD 3355 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">Podanur</span><span class="stop-chip">Kuniyamuthur</span><span class="stop-chip">Ukkadam</span><span class="stop-chip">Town Hall</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>6:00 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:00 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹1,400<small> / month</small></div>
+              <a href="pass-application.html" class="btn btn-primary btn-sm"><i class="bi bi-ticket-perforated me-1"></i>Apply for pass</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-2" alt="College campus, destination of route R-07" loading="lazy">
+              <span class="badge route-tag">R-07</span>
+              <span class="route-state"><span class="badge status-badge badge-approved">Active</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">Thudiyalur Route</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AE 4018 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">Thudiyalur</span><span class="stop-chip">Kavundampalayam</span><span class="stop-chip">Saibaba Colony</span><span class="stop-chip">Gandhipuram</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>6:50 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:10 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹1,050<small> / month</small></div>
+              <a href="pass-application.html" class="btn btn-primary btn-sm"><i class="bi bi-ticket-perforated me-1"></i>Apply for pass</a>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4">
+          <article class="card route-menu-card h-100 route-off">
+            <div class="route-img">
+              <img src="images/college.jpg" class="pos-3" alt="College campus, destination of route R-08" loading="lazy">
+              <span class="badge route-tag">R-08</span>
+              <span class="route-state"><span class="badge status-badge badge-rejected">Inactive</span></span>
+            </div>
+            <div class="card-body">
+              <h3 class="h5 mb-1">Vadavalli Route</h3>
+              <div class="small text-muted mb-3"><i class="bi bi-bus-front me-1"></i>TN 38 AE 4126 · to College Main Campus</div>
+              <div class="mb-3"><span class="stop-chip">Vadavalli</span><span class="stop-chip">Thadagam Road</span><span class="stop-chip">Saibaba Colony</span><span class="stop-chip">RS Puram</span></div>
+              <div class="d-flex justify-content-between small">
+                <span><i class="bi bi-clock me-1 text-primary"></i>Departs <strong>7:20 AM</strong></span>
+                <span><i class="bi bi-flag me-1 text-primary"></i>Arrives <strong>8:20 AM</strong></span>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <div class="route-price">₹950<small> / month</small></div>
+              <span class="btn btn-secondary btn-sm disabled">Not available</span>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Admin section -->
+      <section id="admin-routes">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <div><span class="badge badge-role mb-1">Admin</span><h2 class="h4 mb-0">Manage routes</h2></div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#routeModal"><i class="bi bi-plus-circle me-1"></i>Add route</button>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert"><i class="bi bi-check-circle-fill me-2"></i>Route <strong>R-08</strong> was updated successfully.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+        <div class="card table-card"><div class="table-responsive"><table class="table table-hover">
+          <thead><tr><th>Route</th><th>Bus No.</th><th>Name</th><th>Pickup stops</th><th>Departs</th><th>Arrives</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+<tr><td class="fw-semibold">R-01</td><td class="text-nowrap">TN 38 AB 1201</td><td>Gandhipuram Express</td><td class="stop-list">Gandhipuram, Lakshmi Mills, Peelamedu, Hopes College</td><td class="text-nowrap">6:45 AM</td><td class="text-nowrap">8:10 AM</td><td><span class="badge status-badge badge-approved">Active</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+<tr><td class="fw-semibold">R-02</td><td class="text-nowrap">TN 38 AB 1305</td><td>Singanallur Link</td><td class="stop-list">Singanallur, Ramanathapuram, Race Course, Avinashi Road</td><td class="text-nowrap">6:30 AM</td><td class="text-nowrap">8:00 AM</td><td><span class="badge status-badge badge-approved">Active</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+<tr><td class="fw-semibold">R-03</td><td class="text-nowrap">TN 38 AC 2210</td><td>Saravanampatti Shuttle</td><td class="stop-list">Saravanampatti, Vilankurichi, Civil Aerodrome, Peelamedu</td><td class="text-nowrap">7:00 AM</td><td class="text-nowrap">8:05 AM</td><td><span class="badge status-badge badge-approved">Active</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+<tr><td class="fw-semibold">R-04</td><td class="text-nowrap">TN 38 AC 2417</td><td>Ukkadam Route</td><td class="stop-list">Ukkadam, Town Hall, Gandhipuram, Lakshmi Mills</td><td class="text-nowrap">6:15 AM</td><td class="text-nowrap">8:00 AM</td><td><span class="badge status-badge badge-approved">Active</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+<tr><td class="fw-semibold">R-05</td><td class="text-nowrap">TN 38 AD 3102</td><td>RS Puram Loop</td><td class="stop-list">RS Puram, Race Course, Tatabad, Avinashi Road</td><td class="text-nowrap">7:15 AM</td><td class="text-nowrap">8:15 AM</td><td><span class="badge status-badge badge-approved">Active</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+<tr><td class="fw-semibold">R-06</td><td class="text-nowrap">TN 38 AD 3355</td><td>Podanur Special</td><td class="stop-list">Podanur, Kuniyamuthur, Ukkadam, Town Hall</td><td class="text-nowrap">6:00 AM</td><td class="text-nowrap">8:00 AM</td><td><span class="badge status-badge badge-approved">Active</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+<tr><td class="fw-semibold">R-07</td><td class="text-nowrap">TN 38 AE 4018</td><td>Thudiyalur Route</td><td class="stop-list">Thudiyalur, Kavundampalayam, Saibaba Colony, Gandhipuram</td><td class="text-nowrap">6:50 AM</td><td class="text-nowrap">8:10 AM</td><td><span class="badge status-badge badge-approved">Active</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+<tr><td class="fw-semibold">R-08</td><td class="text-nowrap">TN 38 AE 4126</td><td>Vadavalli Route</td><td class="stop-list">Vadavalli, Thadagam Road, Saibaba Colony, RS Puram</td><td class="text-nowrap">7:20 AM</td><td class="text-nowrap">8:20 AM</td><td><span class="badge status-badge badge-rejected">Inactive</span></td>
+              <td class="text-nowrap"><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#routeModal" title="Edit route"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteRouteModal" title="Delete route"><i class="bi bi-trash"></i></button></td></tr>
+          </tbody></table></div></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add / edit route -->
+  <div class="modal fade" id="routeModal" tabindex="-1" aria-labelledby="routeModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <form class="modal-content" action="routes.html#admin-routes" method="get">
+        <div class="modal-header"><h5 class="modal-title" id="routeModalTitle">Add / Edit Route</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="modal-body"><div class="row g-3">
+          <div class="col-sm-4"><label class="form-label" for="rtNo">Route number</label><input class="form-control" id="rtNo" name="routeNo" required pattern="[A-Za-z0-9\-]{3,8}" placeholder="R-09"></div>
+          <div class="col-sm-8"><label class="form-label" for="rtBus">Bus number</label><input class="form-control" id="rtBus" name="busNo" required placeholder="TN 38 AB 1234" pattern="[A-Za-z]{2}\s?[0-9]{2}\s?[A-Za-z]{1,3}\s?[0-9]{4}"></div>
+          <div class="col-12"><label class="form-label" for="rtName">Route name</label><input class="form-control" id="rtName" name="name" required minlength="3" maxlength="50"></div>
+          <div class="col-12"><label class="form-label" for="rtStops">Pickup stops <span class="text-muted fw-normal">(in order, separated by commas)</span></label><textarea class="form-control" id="rtStops" name="stops" rows="2" required></textarea></div>
+          <div class="col-12"><label class="form-label" for="rtDest">Destination</label><input class="form-control" id="rtDest" name="destination" value="College Main Campus" required></div>
+          <div class="col-6 col-sm-3"><label class="form-label" for="rtDep">Departure</label><input type="time" class="form-control" id="rtDep" name="departure" required></div>
+          <div class="col-6 col-sm-3"><label class="form-label" for="rtArr">Arrival</label><input type="time" class="form-control" id="rtArr" name="arrival" required></div>
+          <div class="col-6 col-sm-3"><label class="form-label" for="rtFare">Fare / month (₹)</label><input type="number" class="form-control" id="rtFare" name="fare" min="100" max="5000" step="50" required></div>
+          <div class="col-6 col-sm-3"><label class="form-label" for="rtStatus">Status</label><select class="form-select" id="rtStatus" name="status"><option>Active</option><option>Inactive</option></select></div>
+        </div></div>
+        <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i>Save route</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirm route deletion -->
+  <div class="modal fade" id="deleteRouteModal" tabindex="-1" aria-labelledby="deleteRouteTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title text-danger" id="deleteRouteTitle"><i class="bi bi-exclamation-triangle me-2"></i>Delete route?</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body">You are about to delete the selected route. This cannot be undone.</div>
+      <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Keep route</button><a href="routes.html" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Delete</a></div>
+    </div></div>
+  </div>
+  <!-- Bootstrap JS bundle (navbar toggler, dropdowns, collapse, offcanvas and modals). No custom JavaScript is used. -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

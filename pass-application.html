@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transport Pass Application | TransitEase</title>
+  <!-- Bootstrap 5.3.3 and Bootstrap Icons (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Common TransitEase styles -->
+  <link href="responsive.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Top navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark app-navbar sticky-top py-0">
+    <div class="container-fluid">
+      <button class="navbar-toggler d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Open menu"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="student-dashboard.html"><span class="brand-mark"><i class="bi bi-bus-front-fill"></i></span>TransitEase</a>
+      <div class="dropdown ms-auto">
+        <button class="btn btn-sm user-menu-btn dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="avatar">AM</span><span class="d-none d-sm-inline">Aarav Menon</span></button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="signin.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="app-body">
+    <!-- Sidebar: offcanvas on small screens, fixed panel on large screens -->
+    <aside class="app-sidebar offcanvas-lg offcanvas-start" id="sidebarMenu" tabindex="-1" aria-label="Main navigation">
+      <div class="offcanvas-header d-lg-none">
+        <h5 class="offcanvas-title text-white"><i class="bi bi-bus-front-fill me-2"></i>TransitEase</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close menu"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column p-3">
+        <div class="side-section">Student</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="student-dashboard.html"><i class="bi bi-speedometer2"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a class="side-link" href="routes.html"><i class="bi bi-signpost-split"></i><span>Routes &amp; Schedules</span></a></li>
+          <li class="nav-item">
+            <a class="side-link" data-bs-toggle="collapse" href="#menuPass" role="button" aria-expanded="true" aria-controls="menuPass"><i class="bi bi-ticket-perforated"></i><span>Transport Pass</span><i class="bi bi-chevron-down chev"></i></a>
+            <div class="collapse show" id="menuPass"><ul class="side-sub"><li><a class="side-link" href="pass-application.html"><i class="bi bi-pencil-square"></i><span>Apply for Pass</span></a></li><li><a class="side-link" href="application-status.html"><i class="bi bi-card-checklist"></i><span>Application Status</span></a></li></ul></div></li>
+          <li class="nav-item"><a class="side-link" href="feedback.html"><i class="bi bi-chat-left-text"></i><span>Feedback &amp; Complaints</span></a></li>
+        </ul>
+        <div class="side-section">Admin</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="admin-dashboard.html"><i class="bi bi-shield-check"></i><span>Admin Dashboard</span></a></li>
+          <li class="nav-item">
+            <a class="side-link" data-bs-toggle="collapse" href="#menuAdmin" role="button" aria-expanded="false" aria-controls="menuAdmin"><i class="bi bi-gear"></i><span>Management</span><i class="bi bi-chevron-down chev"></i></a>
+            <div class="collapse" id="menuAdmin"><ul class="side-sub"><li><a class="side-link" href="routes.html#admin-routes"><i class="bi bi-signpost"></i><span>Manage Routes</span></a></li><li><a class="side-link" href="application-status.html#admin-review"><i class="bi bi-check2-square"></i><span>Review Applications</span></a></li><li><a class="side-link" href="feedback.html#admin-feedback"><i class="bi bi-reply"></i><span>Manage Feedback</span></a></li></ul></div></li>
+        </ul>
+        <div class="side-section">Account</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="profile.html"><i class="bi bi-person-vcard"></i><span>My Profile</span></a></li>
+          <li class="nav-item"><a class="side-link" href="signin.html"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="app-main" id="main">
+      <div class="page-header d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+        <div><h1 class="mb-1">Transport Pass Application</h1><p class="text-muted mb-0">Fill in your details and choose a route to apply for a pass.</p></div>
+        
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <form id="passForm" action="application-status.html" method="get">
+            <div class="card mb-4">
+              <div class="card-header"><i class="bi bi-person-vcard me-2 text-primary"></i>Personal details</div>
+              <div class="card-body"><div class="row g-3">
+                <div class="col-md-6"><label for="pName" class="form-label">Full name</label><input type="text" class="form-control" id="pName" name="name" value="Aarav Menon" required minlength="3" maxlength="60" pattern="[A-Za-z][A-Za-z .']{2,59}" title="Letters only"></div>
+                <div class="col-md-6"><label for="pReg" class="form-label">Register number</label><input type="text" class="form-control" id="pReg" name="regNo" value="26CJ101" required maxlength="12" pattern="[A-Za-z0-9\-]{5,12}" title="5 to 12 letters or digits"></div>
+                <div class="col-md-6"><label for="pEmail" class="form-label">College email</label><input type="email" class="form-control" id="pEmail" name="email" value="student@transitease.edu" required></div>
+                <div class="col-md-6"><label for="pMobile" class="form-label">Mobile number</label><div class="input-group"><span class="input-group-text">+91</span><input type="tel" class="form-control" id="pMobile" name="mobile" required pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" placeholder="10-digit number" title="10-digit Indian mobile number"></div></div>
+                <div class="col-md-6"><label for="pDob" class="form-label">Date of birth</label><input type="date" class="form-control" id="pDob" name="dob" required min="1985-01-01" max="2010-12-31"></div>
+              </div></div>
+            </div>
+
+            <div class="card mb-4">
+              <div class="card-header"><i class="bi bi-ticket-perforated me-2 text-primary"></i>Pass details</div>
+              <div class="card-body"><div class="row g-3">
+                <div class="col-md-6"><label for="pRoute" class="form-label">Bus route</label>
+                  <select class="form-select" id="pRoute" name="route" required><option value="">Select a bus route</option><option>R-01 · TN 38 AB 1201 – Gandhipuram Express</option><option>R-02 · TN 38 AB 1305 – Singanallur Link</option><option>R-03 · TN 38 AC 2210 – Saravanampatti Shuttle</option><option>R-04 · TN 38 AC 2417 – Ukkadam Route</option><option>R-05 · TN 38 AD 3102 – RS Puram Loop</option><option>R-06 · TN 38 AD 3355 – Podanur Special</option><option>R-07 · TN 38 AE 4018 – Thudiyalur Route</option></select></div>
+                <div class="col-md-6"><label for="pStop" class="form-label">Pickup stop</label>
+                  <select class="form-select" id="pStop" name="stop" required><option value="">Select pickup stop</option><option>Avinashi Road</option><option>Civil Aerodrome</option><option>Gandhipuram</option><option>Hopes College</option><option>Kavundampalayam</option><option>Kuniyamuthur</option><option>Lakshmi Mills</option><option>Peelamedu</option><option>Podanur</option><option>RS Puram</option><option>Race Course</option><option>Ramanathapuram</option><option>Saibaba Colony</option><option>Saravanampatti</option><option>Singanallur</option><option>Tatabad</option><option>Thadagam Road</option><option>Thudiyalur</option><option>Town Hall</option><option>Ukkadam</option><option>Vadavalli</option><option>Vilankurichi</option></select></div>
+                <div class="col-md-6"><label for="pType" class="form-label">Pass type</label>
+                  <select class="form-select" id="pType" name="passType" required><option>Monthly</option><option>Semester (6 months)</option><option>Annual (12 months)</option></select></div>
+                <div class="col-md-6"><label for="pMonths" class="form-label">Number of months</label>
+                  <input type="number" class="form-control" id="pMonths" name="months" min="1" max="12" value="1" required><div class="form-text">Monthly: 1–5, Semester: 6, Annual: 12.</div></div>
+              </div>
+              <div class="form-check mt-4">
+                <input class="form-check-input" type="checkbox" id="confirmCheck" name="confirm" required>
+                <label class="form-check-label" for="confirmCheck">I confirm that the details above are correct and I will follow the college transport rules.</label>
+              </div></div>
+              <div class="card-footer d-flex flex-wrap gap-2 justify-content-end">
+                <button type="reset" class="btn btn-outline-secondary"><i class="bi bi-arrow-counterclockwise me-1"></i>Reset</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmSubmitModal"><i class="bi bi-send me-1"></i>Submit application</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="fee-box mb-3"><div class="small fw-semibold text-uppercase">Pass fee guide</div>
+            <div class="amount">₹900 – ₹1,400</div><div class="small">per month, depending on the route</div></div>
+          <div class="card"><div class="card-body">
+            <h2 class="h6"><i class="bi bi-info-circle me-2 text-primary"></i>Good to know</h2>
+            <ul class="small text-muted ps-3 mb-0">
+              <li class="mb-1">Monthly passes can be taken for 1 to 5 months.</li>
+              <li class="mb-1">Semester passes get 5% off and annual passes 10% off.</li>
+              <li class="mb-1">Only one pending application is allowed at a time.</li>
+              <li>You can track the decision under <a href="application-status.html">Application Status</a>.</li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Confirm pass submission: the Yes button submits the form above (form="passForm") -->
+  <div class="modal fade" id="confirmSubmitModal" tabindex="-1" aria-labelledby="confirmSubmitTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="confirmSubmitTitle">Confirm your application</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body"><p class="mb-0">Are you sure you want to submit this transport pass application? You can follow its status on the Application Status page.</p></div>
+      <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Go back</button><button type="submit" form="passForm" class="btn btn-primary">Yes, submit</button></div>
+    </div></div>
+  </div>
+  <!-- Bootstrap JS bundle (navbar toggler, dropdowns, collapse, offcanvas and modals). No custom JavaScript is used. -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

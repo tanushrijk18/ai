@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feedback & Complaints | TransitEase</title>
+  <!-- Bootstrap 5.3.3 and Bootstrap Icons (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Common TransitEase styles -->
+  <link href="responsive.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Top navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark app-navbar sticky-top py-0">
+    <div class="container-fluid">
+      <button class="navbar-toggler d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Open menu"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand" href="student-dashboard.html"><span class="brand-mark"><i class="bi bi-bus-front-fill"></i></span>TransitEase</a>
+      <div class="dropdown ms-auto">
+        <button class="btn btn-sm user-menu-btn dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="avatar">AM</span><span class="d-none d-sm-inline">Aarav Menon</span></button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="signin.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="app-body">
+    <!-- Sidebar: offcanvas on small screens, fixed panel on large screens -->
+    <aside class="app-sidebar offcanvas-lg offcanvas-start" id="sidebarMenu" tabindex="-1" aria-label="Main navigation">
+      <div class="offcanvas-header d-lg-none">
+        <h5 class="offcanvas-title text-white"><i class="bi bi-bus-front-fill me-2"></i>TransitEase</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close menu"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column p-3">
+        <div class="side-section">Student</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="student-dashboard.html"><i class="bi bi-speedometer2"></i><span>Dashboard</span></a></li>
+          <li class="nav-item"><a class="side-link" href="routes.html"><i class="bi bi-signpost-split"></i><span>Routes &amp; Schedules</span></a></li>
+          <li class="nav-item">
+            <a class="side-link" data-bs-toggle="collapse" href="#menuPass" role="button" aria-expanded="false" aria-controls="menuPass"><i class="bi bi-ticket-perforated"></i><span>Transport Pass</span><i class="bi bi-chevron-down chev"></i></a>
+            <div class="collapse" id="menuPass"><ul class="side-sub"><li><a class="side-link" href="pass-application.html"><i class="bi bi-pencil-square"></i><span>Apply for Pass</span></a></li><li><a class="side-link" href="application-status.html"><i class="bi bi-card-checklist"></i><span>Application Status</span></a></li></ul></div></li>
+          <li class="nav-item"><a class="side-link active" href="feedback.html" aria-current="page"><i class="bi bi-chat-left-text"></i><span>Feedback &amp; Complaints</span></a></li>
+        </ul>
+        <div class="side-section">Admin</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="admin-dashboard.html"><i class="bi bi-shield-check"></i><span>Admin Dashboard</span></a></li>
+          <li class="nav-item">
+            <a class="side-link" data-bs-toggle="collapse" href="#menuAdmin" role="button" aria-expanded="false" aria-controls="menuAdmin"><i class="bi bi-gear"></i><span>Management</span><i class="bi bi-chevron-down chev"></i></a>
+            <div class="collapse" id="menuAdmin"><ul class="side-sub"><li><a class="side-link" href="routes.html#admin-routes"><i class="bi bi-signpost"></i><span>Manage Routes</span></a></li><li><a class="side-link" href="application-status.html#admin-review"><i class="bi bi-check2-square"></i><span>Review Applications</span></a></li><li><a class="side-link active" href="feedback.html#admin-feedback"><i class="bi bi-reply"></i><span>Manage Feedback</span></a></li></ul></div></li>
+        </ul>
+        <div class="side-section">Account</div>
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item"><a class="side-link" href="profile.html"><i class="bi bi-person-vcard"></i><span>My Profile</span></a></li>
+          <li class="nav-item"><a class="side-link" href="signin.html"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="app-main" id="main">
+      <div class="page-header d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+        <div><h1 class="mb-1">Feedback &amp; Complaints</h1><p class="text-muted mb-0">Rate bus services, raise complaints and follow up on responses.</p></div>
+        
+      </div>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><i class="bi bi-check-circle-fill me-2"></i>Thank you! Your feedback was submitted and is marked <strong>Pending</strong>.<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-xl-4">
+          <form class="card" action="feedback.html" method="get">
+            <div class="card-header"><i class="bi bi-pencil-square me-2 text-primary"></i>Submit feedback or complaint</div>
+            <div class="card-body">
+              <div class="mb-3"><label for="fRoute" class="form-label">Bus number / route</label>
+                <select class="form-select" id="fRoute" name="route" required><option value="">Select bus number / route</option><option>R-01 · TN 38 AB 1201 – Gandhipuram Express</option><option>R-02 · TN 38 AB 1305 – Singanallur Link</option><option>R-03 · TN 38 AC 2210 – Saravanampatti Shuttle</option><option>R-04 · TN 38 AC 2417 – Ukkadam Route</option><option>R-05 · TN 38 AD 3102 – RS Puram Loop</option><option>R-06 · TN 38 AD 3355 – Podanur Special</option><option>R-07 · TN 38 AE 4018 – Thudiyalur Route</option><option>R-08 · TN 38 AE 4126 – Vadavalli Route</option></select></div>
+              <div class="mb-3"><span class="form-label d-block">Type</span>
+                <div class="btn-group w-100" role="group" aria-label="Type">
+                  <input type="radio" class="btn-check" name="type" id="typeFeedback" value="Feedback" checked><label class="btn btn-outline-primary" for="typeFeedback"><i class="bi bi-chat-heart me-1"></i>Feedback</label>
+                  <input type="radio" class="btn-check" name="type" id="typeComplaint" value="Complaint"><label class="btn btn-outline-primary" for="typeComplaint"><i class="bi bi-flag me-1"></i>Complaint</label>
+                </div></div>
+              <div class="mb-3"><span class="form-label d-block">Service rating</span><div class="btn-group rating-pick flex-wrap" role="group" aria-label="Rating"><input type="radio" class="btn-check" name="rating" id="rate1" value="1"><label class="btn btn-outline-primary" for="rate1">1 <i class="bi bi-star-fill"></i></label><input type="radio" class="btn-check" name="rating" id="rate2" value="2"><label class="btn btn-outline-primary" for="rate2">2 <i class="bi bi-star-fill"></i></label><input type="radio" class="btn-check" name="rating" id="rate3" value="3"><label class="btn btn-outline-primary" for="rate3">3 <i class="bi bi-star-fill"></i></label><input type="radio" class="btn-check" name="rating" id="rate4" value="4"><label class="btn btn-outline-primary" for="rate4">4 <i class="bi bi-star-fill"></i></label><input type="radio" class="btn-check" name="rating" id="rate5" value="5"><label class="btn btn-outline-primary" for="rate5">5 <i class="bi bi-star-fill"></i></label></div></div>
+              <div><label for="fMessage" class="form-label">Your message</label>
+                <textarea class="form-control" id="fMessage" name="message" rows="4" required minlength="10" maxlength="500" placeholder="Tell us what happened or what could be better…"></textarea></div>
+            </div>
+            <div class="card-footer d-flex gap-2 justify-content-end"><button type="reset" class="btn btn-outline-secondary">Reset</button><button type="submit" class="btn btn-primary"><i class="bi bi-send me-1"></i>Submit</button></div>
+          </form>
+        </div>
+        <div class="col-xl">
+          <div class="card table-card">
+            <div class="card-header"><i class="bi bi-clock-history me-2 text-primary"></i>My submissions</div>
+            <div class="table-responsive"><table class="table table-hover">
+              <thead><tr><th>ID</th><th>Bus</th><th>Type</th><th>Rating</th><th>Message</th><th>Date</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+<tr><td class="fw-semibold">F-2001</td><td class="text-nowrap">R-01<div class="small text-muted">TN 38 AB 1201</div></td><td><span class="badge status-badge badge-type">Complaint</span></td><td><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></span></td><td class="truncate-cell">The bus has been arriving at Lakshmi Mills almost 15 minutes late for the past week.</td><td class="text-nowrap">10 Nov 2026</td><td><span class="badge status-badge badge-progress"><i class="bi bi-arrow-repeat me-1"></i>In Progress</span></td>
+              <td><button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#fbDetailModal"><i class="bi bi-eye me-1"></i>View</button></td></tr>
+<tr><td class="fw-semibold">F-2002</td><td class="text-nowrap">R-04<div class="small text-muted">TN 38 AC 2417</div></td><td><span class="badge status-badge badge-type">Feedback</span></td><td><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span></td><td class="truncate-cell">Very comfortable ride and the driver is always polite. Thank you!</td><td class="text-nowrap">21 Oct 2026</td><td><span class="badge status-badge badge-resolved"><i class="bi bi-check2-all me-1"></i>Resolved</span></td>
+              <td><button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#fbDetailModal"><i class="bi bi-eye me-1"></i>View</button></td></tr>
+              </tbody></table></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin section -->
+      <section id="admin-feedback">
+        <div class="mb-3"><span class="badge badge-role mb-1">Admin</span><h2 class="h4 mb-0">Manage feedback &amp; complaints</h2></div>
+        <div class="row g-3 mb-3">
+        <div class="col-6 col-lg"><div class="card stat-card h-100"><div class="card-body py-3"><span class="stat-icon "><i class="bi bi-inboxes"></i></span><div><div class="stat-value">5</div><div class="stat-label">Total received</div></div></div></div></div>
+        <div class="col-6 col-lg"><div class="card stat-card h-100"><div class="card-body py-3"><span class="stat-icon blue"><i class="bi bi-hourglass-split"></i></span><div><div class="stat-value">2</div><div class="stat-label">Pending</div></div></div></div></div>
+        <div class="col-6 col-lg"><div class="card stat-card h-100"><div class="card-body py-3"><span class="stat-icon "><i class="bi bi-arrow-repeat"></i></span><div><div class="stat-value">1</div><div class="stat-label">In progress</div></div></div></div></div>
+        <div class="col-6 col-lg"><div class="card stat-card h-100"><div class="card-body py-3"><span class="stat-icon blue"><i class="bi bi-check2-all"></i></span><div><div class="stat-value">2</div><div class="stat-label">Resolved</div></div></div></div></div>
+        <div class="col-6 col-lg"><div class="card stat-card h-100"><div class="card-body py-3"><span class="stat-icon "><i class="bi bi-star"></i></span><div><div class="stat-value">3.0</div><div class="stat-label">Average rating</div></div></div></div></div>
+        </div>
+        <div class="card mb-3"><div class="card-body"><form class="row g-2 filter-bar" action="feedback.html#admin-feedback" method="get">
+          <div class="col-12 col-md-5"><div class="input-group"><span class="input-group-text"><i class="bi bi-search"></i></span><input type="search" class="form-control" name="q" placeholder="Search student, route, message" aria-label="Search feedback"></div></div>
+          <div class="col-6 col-md-3"><select class="form-select" name="type" aria-label="Filter by type"><option value="">All types</option><option>Feedback</option><option>Complaint</option></select></div>
+          <div class="col-6 col-md-4"><select class="form-select" name="status" aria-label="Filter by status"><option value="">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option></select></div>
+        </form></div></div>
+        <div class="card table-card"><div class="table-responsive"><table class="table table-hover">
+          <thead><tr><th>ID</th><th>Student</th><th>Bus</th><th>Type</th><th>Rating</th><th>Message</th><th>Date</th><th>Status</th><th></th></tr></thead>
+          <tbody>
+<tr><td class="fw-semibold">F-2001</td><td>Aarav Menon</td><td class="text-nowrap">R-01<div class="small text-muted">TN 38 AB 1201</div></td><td><span class="badge status-badge badge-type">Complaint</span></td><td><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></span></td><td class="truncate-cell">The bus has been arriving at Lakshmi Mills almost 15 minutes late for the past week.</td><td class="text-nowrap">10 Nov 2026</td><td><span class="badge status-badge badge-progress"><i class="bi bi-arrow-repeat me-1"></i>In Progress</span></td>
+              <td><button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#respondModal"><i class="bi bi-reply me-1"></i>Respond</button></td></tr>
+<tr><td class="fw-semibold">F-2002</td><td>Aarav Menon</td><td class="text-nowrap">R-04<div class="small text-muted">TN 38 AC 2417</div></td><td><span class="badge status-badge badge-type">Feedback</span></td><td><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></span></td><td class="truncate-cell">Very comfortable ride and the driver is always polite. Thank you!</td><td class="text-nowrap">21 Oct 2026</td><td><span class="badge status-badge badge-resolved"><i class="bi bi-check2-all me-1"></i>Resolved</span></td>
+              <td><button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#respondModal"><i class="bi bi-reply me-1"></i>Respond</button></td></tr>
+<tr><td class="fw-semibold">F-2003</td><td>Priya Nair</td><td class="text-nowrap">R-03<div class="small text-muted">TN 38 AC 2210</div></td><td><span class="badge status-badge badge-type">Complaint</span></td><td><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></span></td><td class="truncate-cell">The bus is overcrowded after Peelamedu and students are forced to stand on the footboard.</td><td class="text-nowrap">15 Nov 2026</td><td><span class="badge status-badge badge-pending"><i class="bi bi-hourglass-split me-1"></i>Pending</span></td>
+              <td><button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#respondModal"><i class="bi bi-reply me-1"></i>Respond</button></td></tr>
+<tr><td class="fw-semibold">F-2004</td><td>Divya R</td><td class="text-nowrap">R-07<div class="small text-muted">TN 38 AE 4018</div></td><td><span class="badge status-badge badge-type">Feedback</span></td><td><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></span></td><td class="truncate-cell">Good service overall. An extra evening trip would be really helpful.</td><td class="text-nowrap">12 Nov 2026</td><td><span class="badge status-badge badge-pending"><i class="bi bi-hourglass-split me-1"></i>Pending</span></td>
+              <td><button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#respondModal"><i class="bi bi-reply me-1"></i>Respond</button></td></tr>
+<tr><td class="fw-semibold">F-2005</td><td>Karthik S</td><td class="text-nowrap">R-05<div class="small text-muted">TN 38 AD 3102</div></td><td><span class="badge status-badge badge-type">Complaint</span></td><td><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></span></td><td class="truncate-cell">The seats near the rear door are broken and need repair.</td><td class="text-nowrap">08 Nov 2026</td><td><span class="badge status-badge badge-resolved"><i class="bi bi-check2-all me-1"></i>Resolved</span></td>
+              <td><button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#respondModal"><i class="bi bi-reply me-1"></i>Respond</button></td></tr>
+          </tbody></table></div></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Student: submission details -->
+  <div class="modal fade" id="fbDetailModal" tabindex="-1" aria-labelledby="fbDetailTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title" id="fbDetailTitle">Submission details</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-between align-items-center mb-3"><div><span class="badge status-badge badge-type">Complaint</span> <span class="ms-1 small text-muted">F-2001 · 10 Nov 2026</span></div><span class="badge status-badge badge-progress"><i class="bi bi-arrow-repeat me-1"></i>In Progress</span></div>
+        <p class="mb-1 small text-muted">Bus / route</p><p>R-01 · TN 38 AB 1201</p>
+        <p class="mb-1 small text-muted">Rating</p><p><span class="rating-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></span></p>
+        <p class="mb-1 small text-muted">Your message</p><p>The bus has been arriving at Lakshmi Mills almost 15 minutes late for the past week.</p>
+        <p class="mb-1 small text-muted">Response from transport office</p>
+        <div class="alert alert-info mb-0">We have informed the driver and are reviewing the morning schedule.</div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button></div>
+    </div></div>
+  </div>
+
+  <!-- Admin: respond and update status -->
+  <div class="modal fade" id="respondModal" tabindex="-1" aria-labelledby="respondTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><form class="modal-content" action="feedback.html#admin-feedback" method="get">
+      <div class="modal-header"><h5 class="modal-title" id="respondTitle">Respond &amp; update status</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body">
+        <div class="mb-3"><div class="mb-2"><span class="badge status-badge badge-type">Complaint</span> <strong>F-2003</strong> · Priya Nair · R-03 (TN 38 AC 2210)</div><div class="bg-light rounded p-2">The bus is overcrowded after Peelamedu and students are forced to stand on the footboard.</div></div>
+        <div class="mb-3"><label for="respText" class="form-label">Response</label><textarea class="form-control" id="respText" name="response" rows="3" maxlength="300" placeholder="Write a reply to the student"></textarea></div>
+        <div><label for="respStatus" class="form-label">Status</label><select class="form-select" id="respStatus" name="status"><option>Pending</option><option>In Progress</option><option>Resolved</option></select></div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Save response</button></div>
+    </form></div>
+  </div>
+  <!-- Bootstrap JS bundle (navbar toggler, dropdowns, collapse, offcanvas and modals). No custom JavaScript is used. -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
